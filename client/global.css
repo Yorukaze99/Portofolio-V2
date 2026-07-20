@@ -1,5 +1,5 @@
 /** @import must precede all other statements */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -41,6 +41,14 @@
     --ring: 222.2 84% 4.9%;
 
     --radius: 0.5rem;
+
+    --ink: 0 0% 0%;
+    --charcoal: 0 0% 8%;
+    --charcoal-light: 0 0% 12%;
+    --charcoal-muted: 0 0% 67%;
+    --charcoal-muted-2: 0 0% 38%;
+    --charcoal-muted-3: 0 0% 49%;
+    --accent-blue: 231 51% 31%;
 
     --sidebar-background: 0 0% 98%;
 
@@ -104,7 +112,7 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
   }
 
   :where(p, span, li, h1, h2, h3, h4, h5, h6, a, button, label, td, th) {

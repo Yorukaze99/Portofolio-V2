@@ -13,7 +13,21 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ["Inter", "sans-serif"],
+        display: ["DM Sans", "sans-serif"],
+        mono: ["IBM Plex Mono", "monospace"],
+      },
       colors: {
+        ink: "hsl(var(--ink))",
+        charcoal: {
+          DEFAULT: "hsl(var(--charcoal))",
+          light: "hsl(var(--charcoal-light))",
+        },
+        "charcoal-muted": "hsl(var(--charcoal-muted))",
+        "charcoal-muted-2": "hsl(var(--charcoal-muted-2))",
+        "charcoal-muted-3": "hsl(var(--charcoal-muted-3))",
+        "accent-blue": "hsl(var(--accent-blue))",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
