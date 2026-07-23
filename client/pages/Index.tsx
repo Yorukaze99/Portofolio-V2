@@ -206,7 +206,7 @@ function CertificateSection() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const moveTo = (index: number) => {
-    const nextIndex = Math.max(0, Math.min(certificates.length - 1, index));
+    const nextIndex = (index + certificates.length) % certificates.length;
     const track = trackRef.current;
     const card = track?.children[nextIndex] as HTMLElement | undefined;
     card?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
@@ -260,8 +260,8 @@ function CertificateSection() {
             ))}
           </div>
           <div className="flex gap-2">
-            <button type="button" onClick={() => moveTo(activeIndex - 1)} disabled={activeIndex === 0} aria-label="Previous certificate" className="flex h-11 w-11 items-center justify-center rounded-full border border-charcoal/20 transition hover:bg-white disabled:cursor-not-allowed disabled:opacity-30"><ChevronLeft className="h-5 w-5" /></button>
-            <button type="button" onClick={() => moveTo(activeIndex + 1)} disabled={activeIndex === certificates.length - 1} aria-label="Next certificate" className="flex h-11 w-11 items-center justify-center rounded-full border border-charcoal/20 transition hover:bg-white disabled:cursor-not-allowed disabled:opacity-30"><ChevronRight className="h-5 w-5" /></button>
+            <button type="button" onClick={() => moveTo(activeIndex - 1)} aria-label="Previous certificate" className="flex h-11 w-11 items-center justify-center rounded-full border border-charcoal/20 transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal"><ChevronLeft className="h-5 w-5" /></button>
+            <button type="button" onClick={() => moveTo(activeIndex + 1)} aria-label="Next certificate" className="flex h-11 w-11 items-center justify-center rounded-full border border-charcoal/20 transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal"><ChevronRight className="h-5 w-5" /></button>
           </div>
         </div>
       </div>
