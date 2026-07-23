@@ -1,4 +1,4 @@
-import { ArrowUpLeft, Cloud, UserRound } from "lucide-react";
+import { ArrowUpLeft, Cloud } from "lucide-react";
 import type { ReactNode } from "react";
 import {
   BootstrapIcon,
@@ -170,8 +170,12 @@ export default function Index() {
               </h1>
             </div>
             <div className="flex flex-col items-end gap-7 justify-self-end">
-              <div className="flex h-36 w-36 items-center justify-center rounded-full border border-white/25 bg-charcoal-light text-charcoal-muted sm:h-44 sm:w-44" aria-label="Portrait placeholder">
-                <UserRound className="h-14 w-14 sm:h-16 sm:w-16" strokeWidth={1} />
+              <div className="h-36 w-36 overflow-hidden rounded-full border border-white/25 bg-charcoal-light sm:h-44 sm:w-44">
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets%2Fcd05da8e9a534590aee63fd0d9435e78%2F65678c7ef3d14e3189ad9291612618b4?format=webp&width=800&height=1200"
+                  alt="Bariq Ainul Fikri"
+                  className="h-full w-full object-cover object-top"
+                />
               </div>
               <p className="max-w-md text-right text-base font-light leading-relaxed text-charcoal-muted-3 sm:text-xl">
                 Blending curiosity, design, and technology, I’m exploring web development while continuously learning, experimenting, and building meaningful digital experiences.
