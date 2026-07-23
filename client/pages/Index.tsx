@@ -1,4 +1,4 @@
-import { ArrowUpLeft, Cloud } from "lucide-react";
+import { ArrowUpLeft, Cloud, UserRound } from "lucide-react";
 import type { ReactNode } from "react";
 import {
   BootstrapIcon,
@@ -160,7 +160,7 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
 export default function Index() {
   return (
     <div className="bg-white text-ink">
-      <section className="bg-charcoal px-5 py-12 text-white sm:px-10 lg:px-[6.9vw] lg:py-16">
+      <section id="home" className="scroll-mt-8 bg-charcoal px-5 py-12 text-white sm:px-10 lg:px-[6.9vw] lg:py-16">
         <header className="mx-auto flex max-w-[1654px] flex-col gap-20">
           <div className="grid min-h-[530px] items-center gap-12 lg:grid-cols-[1.65fr_0.8fr]">
             <div>
@@ -169,9 +169,14 @@ export default function Index() {
                 Bariq Ainul Fikri
               </h1>
             </div>
-            <p className="max-w-md justify-self-end text-right text-base font-light leading-relaxed text-charcoal-muted-3 sm:text-xl">
-              Blending curiosity, design, and technology, I’m exploring web development while continuously learning, experimenting, and building meaningful digital experiences.
-            </p>
+            <div className="flex flex-col items-end gap-7 justify-self-end">
+              <div className="flex h-36 w-36 items-center justify-center rounded-full border border-white/25 bg-charcoal-light text-charcoal-muted sm:h-44 sm:w-44" aria-label="Portrait placeholder">
+                <UserRound className="h-14 w-14 sm:h-16 sm:w-16" strokeWidth={1} />
+              </div>
+              <p className="max-w-md text-right text-base font-light leading-relaxed text-charcoal-muted-3 sm:text-xl">
+                Blending curiosity, design, and technology, I’m exploring web development while continuously learning, experimenting, and building meaningful digital experiences.
+              </p>
+            </div>
           </div>
           <div className="flex flex-col gap-10 border-t border-white/20 pt-8 lg:flex-row lg:items-start lg:justify-between">
             <p className="max-w-4xl text-2xl font-medium leading-tight sm:text-4xl lg:text-[40px]">
