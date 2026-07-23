@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { Boxes, Github, Home, LayoutGrid } from "lucide-react";
+import { Award, Boxes, Github, Home, LayoutGrid } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const NAV_ITEMS = [
   { id: "home", label: "Home", icon: Home },
   { id: "projects", label: "Projects", icon: LayoutGrid },
+  { id: "certificates", label: "Certificates", icon: Award },
   { id: "skills", label: "Skills", icon: Boxes },
 ];
 

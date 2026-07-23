@@ -1,4 +1,5 @@
-import { ArrowUpLeft, Cloud } from "lucide-react";
+import { ChevronLeft, ChevronRight, Award, ArrowUpLeft, Cloud } from "lucide-react";
+import { useRef, useState } from "react";
 import type { ReactNode } from "react";
 import {
   BootstrapIcon,
@@ -36,6 +37,49 @@ const projects = [
     title: "Gemini Clone",
     image:
       "https://api.builder.io/api/v1/image/assets/TEMP/d0bcc2938eeb799a75638e9cc07f6a1cd4c26246?width=1614",
+  },
+];
+
+const certificates = [
+  {
+    issuer: "ID-Networkers",
+    title: "Introduction to Capture the Flag",
+    date: "02 Agustus 2025",
+    detail: "Webinar participant",
+    accent: "from-[#d7222a] via-[#f2e5d2] to-[#273378]",
+    mark: "IDN",
+  },
+  {
+    issuer: "CodeLamp Indonesia",
+    title: "Game Design: From Hobby to Hook",
+    date: "24 Agustus 2025",
+    detail: "Hooked in Minutes, Engaged for Days",
+    accent: "from-[#f4b000] via-white to-[#14232a]",
+    mark: "CODELAMP",
+  },
+  {
+    issuer: "Universitas Kebangsaan RI & Unindra PGRI",
+    title: "Pengenalan Analisis Data menggunakan Library Python (Pandas)",
+    date: "08 Agustus 2025",
+    detail: "Peserta webinar",
+    accent: "from-[#0ea5df] via-white to-[#9e1014]",
+    mark: "DATA / PYTHON",
+  },
+  {
+    issuer: "CodeLamp Indonesia",
+    title: "From Vision to Version 1.0",
+    date: "17 Agustus 2025",
+    detail: "Roadmapping Your Game Effectively",
+    accent: "from-[#f4b000] via-white to-[#14232a]",
+    mark: "CODELAMP",
+  },
+  {
+    issuer: "Trainocate",
+    title: "AI Skill Fest: Bangun Chatbot Buatanmu Sendiri dengan Microsoft Azure!",
+    date: "21 August 2025",
+    detail: "Certificate of attendance",
+    accent: "from-[#ffb052] via-[#f8e8da] to-[#ef3022]",
+    mark: "TRAINOCATE",
   },
 ];
 
@@ -157,6 +201,74 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
   );
 }
 
+function CertificateSection() {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const moveTo = (index: number) => {
+    const nextIndex = Math.max(0, Math.min(certificates.length - 1, index));
+    const track = trackRef.current;
+    const card = track?.children[nextIndex] as HTMLElement | undefined;
+    card?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
+    setActiveIndex(nextIndex);
+  };
+
+  return (
+    <section id="certificates" className="scroll-mt-8 bg-[#f4f1eb] px-5 py-20 sm:px-10 lg:px-[6.9vw] lg:py-28">
+      <div className="mx-auto max-w-[1654px]">
+        <div className="mb-10 flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+          <div>
+            <p className="mb-5 font-mono text-sm uppercase tracking-[0.25em] text-charcoal-muted-2">Achievements</p>
+            <h2 className="font-display text-[clamp(3rem,6vw,5rem)] font-medium leading-[0.95] tracking-[-0.05em]">Certificates & learning</h2>
+          </div>
+          <p className="max-w-sm text-left text-sm leading-relaxed text-charcoal-muted-2 sm:text-right">Drag, swipe, or use the arrows to explore my latest learning milestones.</p>
+        </div>
+        <div
+          ref={trackRef}
+          onScroll={(event) => {
+            const track = event.currentTarget;
+            const nextIndex = Math.round(track.scrollLeft / (track.clientWidth < 640 ? track.clientWidth * 0.88 : track.clientWidth * 0.48));
+            setActiveIndex(Math.min(certificates.length - 1, Math.max(0, nextIndex)));
+          }}
+          className="flex snap-x snap-mandatory gap-5 overflow-x-auto pb-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          aria-label="Certificate carousel"
+        >
+          {certificates.map((certificate) => (
+            <article key={certificate.title} className="w-[88vw] shrink-0 snap-start sm:w-[calc(50%-10px)] lg:w-[calc(50%-10px)]">
+              <div className={`flex min-h-[390px] flex-col justify-between overflow-hidden rounded-[28px] bg-gradient-to-br ${certificate.accent} p-7 text-charcoal shadow-sm sm:min-h-[440px] sm:p-10`}>
+                <div className="flex items-start justify-between gap-5">
+                  <span className="rounded-full bg-white/70 px-4 py-2 font-mono text-xs font-medium tracking-[0.14em]">CERTIFICATE</span>
+                  <Award className="h-8 w-8 shrink-0" strokeWidth={1.5} />
+                </div>
+                <div className="space-y-5">
+                  <p className="font-mono text-sm uppercase tracking-[0.18em] opacity-70">{certificate.mark}</p>
+                  <h3 className="max-w-xl font-display text-3xl font-medium leading-tight sm:text-4xl">{certificate.title}</h3>
+                  <p className="max-w-lg text-base font-medium leading-relaxed sm:text-lg">{certificate.detail}</p>
+                </div>
+                <div className="flex flex-col gap-1 border-t border-black/20 pt-5 text-sm sm:flex-row sm:items-end sm:justify-between sm:text-base">
+                  <span>{certificate.issuer}</span>
+                  <span className="font-mono">{certificate.date}</span>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+        <div className="mt-3 flex items-center justify-between">
+          <div className="flex gap-2" aria-label="Certificate slide indicators">
+            {certificates.map((certificate, index) => (
+              <button key={certificate.title} type="button" onClick={() => moveTo(index)} aria-label={`Show certificate ${index + 1}`} className={`h-2 rounded-full transition-all ${activeIndex === index ? "w-8 bg-charcoal" : "w-2 bg-charcoal/25"}`} />
+            ))}
+          </div>
+          <div className="flex gap-2">
+            <button type="button" onClick={() => moveTo(activeIndex - 1)} disabled={activeIndex === 0} aria-label="Previous certificate" className="flex h-11 w-11 items-center justify-center rounded-full border border-charcoal/20 transition hover:bg-white disabled:cursor-not-allowed disabled:opacity-30"><ChevronLeft className="h-5 w-5" /></button>
+            <button type="button" onClick={() => moveTo(activeIndex + 1)} disabled={activeIndex === certificates.length - 1} aria-label="Next certificate" className="flex h-11 w-11 items-center justify-center rounded-full border border-charcoal/20 transition hover:bg-white disabled:cursor-not-allowed disabled:opacity-30"><ChevronRight className="h-5 w-5" /></button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function Index() {
   return (
     <div className="bg-white text-ink">
@@ -194,6 +306,8 @@ export default function Index() {
           </div>
         </header>
       </section>
+
+      <CertificateSection />
 
       <section id="projects" className="px-5 py-20 sm:px-10 lg:px-[6.9vw] lg:py-28">
         <div className="mx-auto max-w-[1654px]">
