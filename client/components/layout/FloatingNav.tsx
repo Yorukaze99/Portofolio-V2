@@ -4,8 +4,8 @@ import { cn } from "@/lib/utils";
 
 const NAV_ITEMS = [
   { id: "home", label: "Home", icon: Home },
-  { id: "projects", label: "Projects", icon: LayoutGrid },
-  { id: "certificates", label: "Certificates", icon: Award },
+  { id: "certificates", label: "Certificate", icon: Award },
+  { id: "projects", label: "Project", icon: LayoutGrid },
   { id: "skills", label: "Skills", icon: Boxes },
 ];
 
