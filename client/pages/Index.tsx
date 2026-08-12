@@ -54,6 +54,7 @@ const certificates = [
     detail: "Webinar participant",
     accent: "from-[#d7222a] via-[#f2e5d2] to-[#273378]",
     mark: "IDN",
+    image: "/certificate/Code_Generated_Image (1).jpg",
   },
   {
     issuer: "CodeLamp Indonesia",
@@ -62,6 +63,7 @@ const certificates = [
     detail: "Hooked in Minutes, Engaged for Days",
     accent: "from-[#f4b000] via-white to-[#14232a]",
     mark: "CODELAMP",
+    image: "/certificate/Code_Generated_Image (2).jpg",
   },
   {
     issuer: "Universitas Kebangsaan RI & Unindra PGRI",
@@ -70,6 +72,7 @@ const certificates = [
     detail: "Peserta webinar",
     accent: "from-[#0ea5df] via-white to-[#9e1014]",
     mark: "DATA / PYTHON",
+    image: "/certificate/Code_Generated_Image (3).jpg",
   },
   {
     issuer: "CodeLamp Indonesia",
@@ -78,6 +81,7 @@ const certificates = [
     detail: "Roadmapping Your Game Effectively",
     accent: "from-[#f4b000] via-white to-[#14232a]",
     mark: "CODELAMP",
+    image: "/certificate/Code_Generated_Image (4).jpg",
   },
   {
     issuer: "Trainocate",
@@ -87,6 +91,7 @@ const certificates = [
     detail: "Certificate of attendance",
     accent: "from-[#ffb052] via-[#f8e8da] to-[#ef3022]",
     mark: "TRAINOCATE",
+    image: "/certificate/Code_Generated_Image (5).jpg",
   },
 ];
 
@@ -240,6 +245,7 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
 function CertificateSection() {
   const trackRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   const moveTo = (index: number) => {
     const nextIndex = (index + certificates.length) % certificates.length;
@@ -253,11 +259,22 @@ function CertificateSection() {
     setActiveIndex(nextIndex);
   };
 
+  const openLightbox = (index: number) => setLightboxIndex(index);
+  const closeLightbox = () => setLightboxIndex(null);
+  const showPrev = () => {
+    if (lightboxIndex === null) return;
+    setLightboxIndex((lightboxIndex - 1 + certificates.length) % certificates.length);
+  };
+  const showNext = () => {
+    if (lightboxIndex === null) return;
+    setLightboxIndex((lightboxIndex + 1) % certificates.length);
+  };
+
   return (
-      <section
-        id="certificates"
-        className="scroll-mt-8 bg-[#f4f1eb] px-5 py-12 sm:px-10 sm:py-16 lg:px-[6.9vw] lg:py-20"
-      >
+    <section
+      id="certificates"
+      className="scroll-mt-8 bg-[#f4f1eb] px-5 py-12 sm:px-10 sm:py-16 lg:px-[6.9vw] lg:py-20"
+    >
       <div className="mx-auto max-w-[1400px]">
         <div className="mb-10 flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
           <div>
@@ -290,34 +307,21 @@ function CertificateSection() {
           className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           aria-label="Certificate carousel"
         >
-          {certificates.map((certificate) => (
+          {certificates.map((certificate, index) => (
             <article
               key={certificate.title}
               className="w-[88vw] shrink-0 snap-start sm:w-[calc(50%-10px)] lg:w-[calc(50%-10px)]"
             >
               <div
-                className={`flex min-h-[300px] flex-col justify-between overflow-hidden rounded-[28px] bg-gradient-to-br ${certificate.accent} p-6 text-charcoal shadow-sm sm:min-h-[340px] sm:p-8`}
+                className="overflow-hidden rounded-[28px] bg-charcoal-light shadow-sm cursor-pointer"
+                onClick={() => openLightbox(index)}
               >
-                <div className="flex items-start justify-between gap-5">
-                  <span className="rounded-full bg-white/70 px-4 py-2 font-mono text-xs font-medium tracking-[0.14em]">
-                    CERTIFICATE
-                  </span>
-                  <Award className="h-8 w-8 shrink-0" strokeWidth={1.5} />
-                </div>
-                <div className="space-y-5">
-                  <p className="font-mono text-sm uppercase tracking-[0.18em] opacity-70">
-                    {certificate.mark}
-                  </p>
-                  <h3 className="max-w-xl font-display text-2xl font-medium leading-tight sm:text-3xl">
-                    {certificate.title}
-                  </h3>
-                  <p className="max-w-lg text-sm font-medium leading-relaxed sm:text-base">
-                    {certificate.detail}
-                  </p>
-                </div>
-                <div className="flex flex-col gap-1 border-t border-black/20 pt-4 text-xs sm:flex-row sm:items-end sm:justify-between sm:text-sm">
-                  <span>{certificate.issuer}</span>
-                  <span className="font-mono">{certificate.date}</span>
+                <div className="aspect-[1.4/1] w-full overflow-hidden bg-charcoal-light/50">
+                  <img
+                    src={certificate.image}
+                    alt={certificate.title}
+                    className="h-full w-full object-contain transition-all duration-500 ease-out hover:scale-[1.03]"
+                  />
                 </div>
               </div>
             </article>
@@ -355,6 +359,51 @@ function CertificateSection() {
           </div>
         </div>
       </div>
+
+      {lightboxIndex !== null && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 sm:p-8"
+          onClick={closeLightbox}
+        >
+          <button
+            type="button"
+            onClick={closeLightbox}
+            aria-label="Close lightbox"
+            className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+          >
+            ✕
+          </button>
+          <button
+            type="button"
+            onClick={(e) => { e.stopPropagation(); showPrev(); }}
+            aria-label="Previous certificate"
+            className="absolute left-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:left-8"
+          >
+            <ChevronLeft className="h-6 w-6" />
+          </button>
+          <button
+            type="button"
+            onClick={(e) => { e.stopPropagation(); showNext(); }}
+            aria-label="Next certificate"
+            className="absolute right-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:right-8"
+          >
+            <ChevronRight className="h-6 w-6" />
+          </button>
+          <div
+            className="max-h-[85vh] max-w-[90vw]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={certificates[lightboxIndex].image}
+              alt={certificates[lightboxIndex].title}
+              className="max-h-[85vh] max-w-[90vw] rounded-lg object-contain"
+            />
+            <p className="mt-3 text-center font-display text-lg text-white sm:text-xl">
+              {certificates[lightboxIndex].title}
+            </p>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
