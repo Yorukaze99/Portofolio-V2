@@ -54,7 +54,7 @@ const certificates = [
     detail: "Webinar participant",
     accent: "from-[#d7222a] via-[#f2e5d2] to-[#273378]",
     mark: "IDN",
-    image: "/certificate/Code_Generated_Image (1).jpg",
+    image: "/certificate/Code_Generated_Image (5).jpg",
   },
   {
     issuer: "CodeLamp Indonesia",
@@ -63,7 +63,7 @@ const certificates = [
     detail: "Hooked in Minutes, Engaged for Days",
     accent: "from-[#f4b000] via-white to-[#14232a]",
     mark: "CODELAMP",
-    image: "/certificate/Code_Generated_Image (2).jpg",
+    image: "/certificate/Code_Generated_Image (6).jpg",
   },
   {
     issuer: "Universitas Kebangsaan RI & Unindra PGRI",
@@ -91,7 +91,17 @@ const certificates = [
     detail: "Certificate of attendance",
     accent: "from-[#ffb052] via-[#f8e8da] to-[#ef3022]",
     mark: "TRAINOCATE",
-    image: "/certificate/Code_Generated_Image (5).jpg",
+    image: "/certificate/Code_Generated_Image (1).jpg",
+  },
+  {
+    issuer: "Trainocate",
+    title:
+      "AI Skill Fest: Bangun Chatbot Buatanmu Sendiri dengan Microsoft Azure!",
+    date: "21 August 2025",
+    detail: "Certificate of attendance",
+    accent: "from-[#ffb052] via-[#f8e8da] to-[#ef3022]",
+    mark: "TRAINOCATE",
+    image: "/certificate/Code_Generated_Image (2).jpg",
   },
 ];
 
