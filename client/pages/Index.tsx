@@ -29,9 +29,9 @@ const projects = [
       "https://i.imgur.com/KkZnxzd.jpeg",
   },
   {
-    title: "Winzee Web Chat application",
+    title: "Tella Truth",
     image:
-      "https://api.builder.io/api/v1/image/assets/TEMP/d322f7695edec0e3b14b58b5f57aa4800484b1a1?width=1614",
+      "https://i.imgur.com/ylRtPxc.jpeg",
   },
   {
     title: "ChatGPT clone",
@@ -169,7 +169,7 @@ function IconBubble({
 }) {
   return (
     <div
-      className={`flex shrink-0 items-center justify-center rounded-full bg-charcoal p-4 ${large ? "h-24 w-24" : "h-20 w-20"}`}
+      className={`flex shrink-0 items-center justify-center rounded-full bg-charcoal ${large ? "h-24 w-24 p-3.5" : "h-20 w-20 p-3"}`}
     >
       {children}
     </div>
@@ -178,7 +178,7 @@ function IconBubble({
 
 function SkillCard({ group }: { group: (typeof skillGroups)[number] }) {
   return (
-    <article className="flex min-h-[300px] flex-col gap-8 rounded-[28px] bg-charcoal-light p-8 sm:p-10">
+    <article className="flex min-h-[260px] flex-col gap-6 rounded-[28px] bg-charcoal-light p-7 sm:min-h-[280px] sm:p-8">
       <div className="flex min-h-20 items-center justify-center gap-5 sm:justify-start">
         {group.icons?.map((Icon, index) => (
           <IconBubble key={index} large>
@@ -188,26 +188,26 @@ function SkillCard({ group }: { group: (typeof skillGroups)[number] }) {
         {group.tags && (
           <div className="flex flex-wrap gap-2">
             {group.tags.map((tag) => (
-              <span
-                key={tag}
-                className="rounded-full bg-charcoal px-4 py-3 text-sm font-light text-white sm:text-base"
-              >
-                {tag}
-              </span>
+          <span
+            key={tag}
+            className="rounded-full bg-charcoal px-3 py-1.5 text-xs font-light text-white sm:text-sm"
+          >
+            {tag}
+          </span>
             ))}
           </div>
         )}
         {group.tag && (
-          <span className="rounded-full bg-charcoal px-6 py-3 text-base text-white">
+          <span className="rounded-full bg-charcoal px-4 py-1.5 text-sm text-white">
             {group.tag}
           </span>
         )}
       </div>
       <div className="mt-auto space-y-2">
-        <h3 className="font-display text-2xl font-medium text-white sm:text-[28px]">
+        <h3 className="font-display text-xl font-medium text-white sm:text-2xl">
           {group.title}
         </h3>
-        <p className="max-w-xl text-base font-light leading-relaxed text-charcoal-muted sm:text-xl">
+        <p className="max-w-xl text-sm font-light leading-relaxed text-charcoal-muted sm:text-base">
           {group.description}
         </p>
       </div>
@@ -217,9 +217,9 @@ function SkillCard({ group }: { group: (typeof skillGroups)[number] }) {
 
 function ProjectCard({ project }: { project: (typeof projects)[number] }) {
   return (
-    <article className="group flex flex-col gap-5">
+    <article className="group flex flex-col gap-4">
       <div
-        className={`flex h-[260px] items-center justify-center overflow-hidden rounded-[30px] sm:h-[420px] lg:h-[470px] ${project.dark ? "bg-black" : "bg-[#e7e7e7]"}`}
+        className={`flex h-[220px] items-center justify-center overflow-hidden rounded-[30px] sm:h-[300px] lg:h-[340px] ${project.dark ? "bg-black" : "bg-[#e7e7e7]"}`}
       >
         <img
           src={project.image}
@@ -228,8 +228,8 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
         />
       </div>
       <div className="flex items-center gap-3">
-        <ArrowUpLeft className="h-12 w-12 shrink-0" strokeWidth={1.5} />
-        <h3 className="font-display text-xl font-normal text-ink sm:text-3xl lg:text-[40px]">
+        <ArrowUpLeft className="h-10 w-10 shrink-0" strokeWidth={1.5} />
+          <h3 className="font-display text-xl font-normal text-ink sm:text-2xl lg:text-3xl">
           {project.title}
         </h3>
       </div>
@@ -254,17 +254,17 @@ function CertificateSection() {
   };
 
   return (
-    <section
-      id="certificates"
-      className="scroll-mt-8 bg-[#f4f1eb] px-5 py-20 sm:px-10 lg:px-[6.9vw] lg:py-28"
-    >
-      <div className="mx-auto max-w-[1654px]">
+      <section
+        id="certificates"
+        className="scroll-mt-8 bg-[#f4f1eb] px-5 py-12 sm:px-10 sm:py-16 lg:px-[6.9vw] lg:py-20"
+      >
+      <div className="mx-auto max-w-[1400px]">
         <div className="mb-10 flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
           <div>
             <p className="mb-5 font-mono text-sm uppercase tracking-[0.25em] text-charcoal-muted-2">
               Achievements
             </p>
-            <h2 className="font-display text-[clamp(3rem,6vw,5rem)] font-medium leading-[0.95] tracking-[-0.05em]">
+            <h2 className="font-display text-[clamp(2rem,4.5vw,3.5rem)] font-medium leading-[0.95] tracking-[-0.05em]">
               Certificates & learning
             </h2>
           </div>
@@ -287,7 +287,7 @@ function CertificateSection() {
               Math.min(certificates.length - 1, Math.max(0, nextIndex)),
             );
           }}
-          className="flex snap-x snap-mandatory gap-5 overflow-x-auto pb-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           aria-label="Certificate carousel"
         >
           {certificates.map((certificate) => (
@@ -296,7 +296,7 @@ function CertificateSection() {
               className="w-[88vw] shrink-0 snap-start sm:w-[calc(50%-10px)] lg:w-[calc(50%-10px)]"
             >
               <div
-                className={`flex min-h-[390px] flex-col justify-between overflow-hidden rounded-[28px] bg-gradient-to-br ${certificate.accent} p-7 text-charcoal shadow-sm sm:min-h-[440px] sm:p-10`}
+                className={`flex min-h-[300px] flex-col justify-between overflow-hidden rounded-[28px] bg-gradient-to-br ${certificate.accent} p-6 text-charcoal shadow-sm sm:min-h-[340px] sm:p-8`}
               >
                 <div className="flex items-start justify-between gap-5">
                   <span className="rounded-full bg-white/70 px-4 py-2 font-mono text-xs font-medium tracking-[0.14em]">
@@ -308,14 +308,14 @@ function CertificateSection() {
                   <p className="font-mono text-sm uppercase tracking-[0.18em] opacity-70">
                     {certificate.mark}
                   </p>
-                  <h3 className="max-w-xl font-display text-3xl font-medium leading-tight sm:text-4xl">
+                  <h3 className="max-w-xl font-display text-2xl font-medium leading-tight sm:text-3xl">
                     {certificate.title}
                   </h3>
-                  <p className="max-w-lg text-base font-medium leading-relaxed sm:text-lg">
+                  <p className="max-w-lg text-sm font-medium leading-relaxed sm:text-base">
                     {certificate.detail}
                   </p>
                 </div>
-                <div className="flex flex-col gap-1 border-t border-black/20 pt-5 text-sm sm:flex-row sm:items-end sm:justify-between sm:text-base">
+                <div className="flex flex-col gap-1 border-t border-black/20 pt-4 text-xs sm:flex-row sm:items-end sm:justify-between sm:text-sm">
                   <span>{certificate.issuer}</span>
                   <span className="font-mono">{certificate.date}</span>
                 </div>
@@ -331,7 +331,7 @@ function CertificateSection() {
                 type="button"
                 onClick={() => moveTo(index)}
                 aria-label={`Show certificate ${index + 1}`}
-                className={`h-2 rounded-full transition-all ${activeIndex === index ? "w-8 bg-charcoal" : "w-2 bg-charcoal/25"}`}
+                className={`h-1.5 rounded-full transition-all ${activeIndex === index ? "w-7 bg-charcoal" : "w-1.5 bg-charcoal/25"}`}
               />
             ))}
           </div>
@@ -340,17 +340,17 @@ function CertificateSection() {
               type="button"
               onClick={() => moveTo(activeIndex - 1)}
               aria-label="Previous certificate"
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-charcoal/20 transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-charcoal/20 transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal"
             >
-              <ChevronLeft className="h-5 w-5" />
+              <ChevronLeft className="h-4 w-4" />
             </button>
             <button
               type="button"
               onClick={() => moveTo(activeIndex + 1)}
               aria-label="Next certificate"
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-charcoal/20 transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-charcoal/20 transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal"
             >
-              <ChevronRight className="h-5 w-5" />
+              <ChevronRight className="h-4 w-4" />
             </button>
           </div>
         </div>
@@ -364,44 +364,38 @@ export default function Index() {
     <div className="bg-white text-ink">
       <section
         id="home"
-        className="scroll-mt-8 bg-charcoal px-5 py-12 text-white sm:px-10 lg:px-[6.9vw] lg:py-16"
+        className="scroll-mt-8 bg-charcoal px-5 py-12 text-white sm:px-10 sm:py-16 lg:px-[6.9vw] lg:py-20"
       >
-        <header className="mx-auto flex max-w-[1654px] flex-col gap-20">
-          <div className="grid min-h-[530px] items-center gap-12 lg:grid-cols-[1.65fr_0.8fr]">
+        <header className="mx-auto flex max-w-[1400px] flex-col gap-10 lg:gap-14">
+          <div className="grid min-h-[420px] items-center gap-6 lg:grid-cols-[1.2fr_1fr]">
             <div>
-              <p className="mb-6 font-mono text-sm uppercase tracking-[0.25em] text-charcoal-muted">
+              <p className="mb-5 font-mono text-sm uppercase tracking-[0.25em] text-charcoal-muted">
                 Portfolio / 2026
               </p>
-              <h1 className="font-display text-[clamp(3.5rem,8.5vw,8.75rem)] font-normal leading-[0.95] tracking-[-0.06em]">
+              <h1 className="font-display text-[clamp(2.6rem,5.5vw,5rem)] font-normal leading-[0.95] tracking-[-0.06em]">
                 Bariq Ainul Fikri
               </h1>
             </div>
-            <div className="flex flex-col items-end gap-7 justify-self-end">
-              <div className="h-36 w-36 overflow-hidden rounded-full border border-white/25 bg-charcoal-light sm:h-44 sm:w-44">
+            <div className="flex flex-col items-center gap-5 justify-self-end">
+              <div className="h-36 w-36 overflow-hidden rounded-full border border-white/25 bg-charcoal-light sm:h-44 sm:w-44 lg:h-56 lg:w-56">
                 <img
                   src="https://cdn.builder.io/api/v1/image/assets%2Fcd05da8e9a534590aee63fd0d9435e78%2F65678c7ef3d14e3189ad9291612618b4?format=webp&width=800&height=1200"
                   alt="Bariq Ainul Fikri"
-                  className="h-full w-full object-cover object-center scale-110"
+                  className="h-full w-full object-cover object-center scale-105"
                 />
               </div>
-              <p className="max-w-md text-right text-base font-light leading-relaxed text-charcoal-muted-3 sm:text-xl">
-                Blending curiosity, design, and technology, I’m exploring web
-                development while continuously learning, experimenting, and
-                building meaningful digital experiences.
+              <p className="max-w-xs text-center text-sm font-light leading-relaxed text-charcoal-muted-3 sm:text-base lg:max-w-sm">
+                Software engineering student yang selalu penasaran sama dunia tech. suka ngulik web dev, nyoba hal baru, dan terus berkembang.
               </p>
             </div>
           </div>
-          <div className="flex flex-col gap-10 border-t border-white/20 pt-8 lg:flex-row lg:items-start lg:justify-between">
-            <p className="max-w-4xl text-2xl font-medium leading-tight sm:text-4xl lg:text-[40px]">
-              Driven by curiosity and a passion for growth, I’m exploring web
-              development and digital design one step at a time. Still learning,
-              experimenting, and building simple yet meaningful projects while
-              improving my coding, creativity, and communication skills.
+          <div className="flex flex-col gap-6 border-t border-white/20 pt-5 lg:flex-row lg:items-start lg:justify-between">
+            <p className="max-w-4xl text-lg font-medium leading-tight sm:text-xl lg:text-2xl">
+              Curious by nature, I focus on building web applications and exploring software engineering. Currently learning, experimenting, and turning ideas into clean, working code.
             </p>
             <div className="max-w-sm shrink-0 text-right">
               <p className="text-sm font-light uppercase leading-relaxed tracking-wide text-white sm:text-lg">
-                Here’s a selection of projects that showcase my passion for
-                design and development, reflecting creativity and innovation.
+                
               </p>
             </div>
           </div>
@@ -412,15 +406,15 @@ export default function Index() {
 
       <section
         id="projects"
-        className="px-5 py-20 sm:px-10 lg:px-[6.9vw] lg:py-28"
+        className="px-5 py-12 sm:px-10 sm:py-16 lg:px-[6.9vw] lg:py-20"
       >
-        <div className="mx-auto max-w-[1654px]">
-          <div className="mb-16 flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
+        <div className="mx-auto max-w-[1400px]">
+          <div className="mb-12 flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
             <div>
               <p className="mb-5 font-mono text-sm text-charcoal-muted-2">
                 Selected work
               </p>
-              <h2 className="max-w-4xl font-display text-[clamp(3rem,6vw,5rem)] font-medium leading-[0.95] tracking-[-0.05em]">
+              <h2 className="max-w-4xl font-display text-[clamp(2rem,4.5vw,3.5rem)] font-medium leading-[0.95] tracking-[-0.05em]">
                 Welcome to my realm of wild projects and awesome creations
               </h2>
             </div>
@@ -429,7 +423,7 @@ export default function Index() {
               products.
             </p>
           </div>
-          <div className="grid gap-x-10 gap-y-16 lg:grid-cols-2">
+          <div className="grid gap-x-8 gap-y-12 lg:grid-cols-2">
             {projects.map((project) => (
               <ProjectCard key={project.title} project={project} />
             ))}
@@ -439,24 +433,24 @@ export default function Index() {
 
       <section
         id="skills"
-        className="bg-charcoal px-5 py-20 text-white sm:px-10 lg:px-[6.9vw] lg:py-28"
+        className="bg-charcoal px-5 py-12 text-white sm:px-10 sm:py-16 lg:px-[6.9vw] lg:py-20"
       >
-        <div className="mx-auto max-w-[1654px]">
-          <div className="mb-16 text-center">
+        <div className="mx-auto max-w-[1400px]">
+          <div className="mb-12 text-center">
             <p className="mb-6 font-mono text-sm uppercase tracking-[0.25em] text-charcoal-muted">
               Capabilities
             </p>
-            <h2 className="font-display text-[clamp(3.5rem,9vw,8.75rem)] font-normal leading-[0.9] tracking-[-0.06em]">
-              Skills that fuel my passion
-            </h2>
+            <h2 className="font-display text-[clamp(2rem,5.5vw,4.5rem)] font-normal leading-[0.9] tracking-[-0.06em]">
+  Skills that fuel my passion
+</h2>
           </div>
-          <div className="grid gap-5 md:grid-cols-2">
+          <div className="grid gap-4 md:grid-cols-2">
             {skillGroups.map((group) => (
               <SkillCard key={group.title} group={group} />
             ))}
           </div>
-          <div className="mt-14 flex justify-end">
-            <p className="max-w-xl text-right text-base font-light leading-relaxed text-white sm:text-xl">
+          <div className="mt-10 flex justify-end">
+            <p className="max-w-xl text-right text-sm font-light leading-relaxed text-white sm:text-base">
               Passionate Creative Designer and Developer, dedicated to crafting
               innovative solutions and exceptional digital experiences through
               modern technologies
@@ -467,24 +461,24 @@ export default function Index() {
 
       <footer
         id="contact"
-        className="px-5 py-20 sm:px-10 lg:px-[6.9vw] lg:py-24"
+        className="px-5 py-12 sm:px-10 sm:py-16 lg:px-[6.9vw] lg:py-20"
       >
-        <div className="mx-auto max-w-[1654px]">
+        <div className="mx-auto max-w-[1400px]">
           <p className="mb-3 font-mono text-sm text-charcoal-muted-2">
             That’s all for now.
           </p>
-          <h2 className="max-w-4xl font-display text-[clamp(3.5rem,7vw,6.5rem)] font-normal leading-[0.95] tracking-[-0.06em]">
+          <h2 className="max-w-4xl font-display text-[clamp(2.5rem,5.5vw,4.5rem)] font-normal leading-[0.95] tracking-[-0.06em]">
             Got a project in mind?
             <br />
-            Let’s talk
+            Let's talk
           </h2>
-          <div className="my-16 h-px bg-black" />
-          <div className="flex flex-col gap-12 sm:flex-row sm:items-end sm:justify-between">
-            <div className="flex flex-wrap gap-12 sm:gap-20">
+          <div className="my-10 h-px bg-black" />
+          <div className="flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
+            <div className="flex flex-wrap gap-8 sm:gap-10">
               <div>
                 <p className="text-sm text-charcoal-muted-2">Email:</p>
                 <a
-                  className="mt-1 block text-lg hover:underline sm:text-2xl"
+                  className="mt-1 block text-base hover:underline sm:text-lg"
                   href="mailto:bariqainulfikri@gmail.com"
                 >
                   bariqainulfikri99@gmail.com
@@ -493,21 +487,21 @@ export default function Index() {
               <div>
                 <p className="text-sm text-charcoal-muted-2">Phone</p>
                 <a
-                  className="mt-1 block text-lg hover:underline sm:text-2xl"
+                  className="mt-1 block text-base hover:underline sm:text-lg"
                   href="tel:+6283137632464"
                 >
-                  (+62) 83137632464
+                  (+62) 831-3763-2464
                 </a>
               </div>
             </div>
             <a
               href="mailto:bariqainulfikri@gmail.com"
-              className="flex h-48 w-48 items-center justify-center rounded-full bg-accent-blue text-lg text-white transition-transform hover:scale-105 sm:h-56 sm:w-56"
+              className="flex h-40 w-40 items-center justify-center rounded-full bg-accent-blue text-base text-white transition-transform hover:scale-105 sm:h-48 sm:w-48"
             >
               Get in touch
             </a>
           </div>
-          <div className="mt-24 flex flex-col justify-between gap-6 border-t border-black/10 pt-6 text-sm text-charcoal-muted-2 sm:flex-row">
+          <div className="mt-16 flex flex-col justify-between gap-5 border-t border-black/10 pt-5 text-sm text-charcoal-muted-2 sm:flex-row">
             <span>@ by Bariq</span>
             <span className="max-w-md text-left sm:text-right">
               Passionate Creative Designer and Developer, dedicated to crafting

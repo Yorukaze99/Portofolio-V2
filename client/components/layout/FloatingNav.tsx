@@ -29,6 +29,7 @@ export default function FloatingNav() {
   }, []);
 
   const scrollTo = (id: string) => {
+    setActiveSection(id);
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
@@ -45,7 +46,7 @@ export default function FloatingNav() {
           aria-label={`Go to ${label}`}
           aria-current={activeSection === id ? "page" : undefined}
           className={cn(
-            "flex h-10 w-10 items-center justify-center rounded-full transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:h-[50px] sm:w-[50px]",
+            "flex h-10 w-10 items-center justify-center rounded-full transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:h-11 sm:w-11",
             activeSection === id
               ? "bg-[#D4D4D4] text-charcoal"
               : "bg-charcoal text-white hover:bg-[#333]",
@@ -59,7 +60,7 @@ export default function FloatingNav() {
         target="_blank"
         rel="noreferrer"
         aria-label="Open GitHub repository"
-        className="flex h-10 w-10 items-center justify-center rounded-full bg-charcoal text-white transition-colors duration-200 hover:bg-[#333] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:h-[50px] sm:w-[50px]"
+        className="flex h-10 w-10 items-center justify-center rounded-full bg-charcoal text-white transition-colors duration-200 hover:bg-[#333] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:h-11 sm:w-11"
       >
         <Github className="h-4 w-4 sm:h-5 sm:w-5" strokeWidth={1.75} />
       </a>
