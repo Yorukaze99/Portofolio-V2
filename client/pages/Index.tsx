@@ -10,12 +10,12 @@ import type { ReactNode } from "react";
 import {
   BootstrapIcon,
   Css3Icon,
-  DjangoIcon,
   FigmaIcon,
   GitIcon,
   GithubIcon,
   Html5Icon,
   JavascriptIcon,
+  LaravelIcon,
   MysqlIcon,
   PythonIcon,
   TailwindIcon,
@@ -26,7 +26,7 @@ const projects = [
   {
     title: "Chat Terminal P2P",
     image:
-      "https://i.imgur.com/KkZnxzd.jpeg",
+      "https://i.imgur.com/NFLc9Rm.png",
   },
   {
     title: "Tella Truth",
@@ -34,9 +34,9 @@ const projects = [
       "https://i.imgur.com/ylRtPxc.jpeg",
   },
   {
-    title: "ChatGPT clone",
+    title: "Task Manager",
     image:
-      "https://api.builder.io/api/v1/image/assets/TEMP/e0dddb0dccf5ff3e75d77809621fc86b52d25434?width=472",
+      "https://i.imgur.com/2en1Zb1.jpeg",
     dark: true,
   },
   {
@@ -105,74 +105,20 @@ const certificates = [
   },
 ];
 
-const skillGroups = [
-  {
-    title: "Front-End Development",
-    description:
-      "Building engaging and user-friendly web interfaces using modern frameworks and technologies with expertise.",
-    icons: [Html5Icon, JavascriptIcon],
-  },
-  {
-    title: "Back-End Development",
-    description:
-      "Developing robust server-side logic and APIs to power dynamic and scalable web applications.",
-    icons: [DjangoIcon],
-  },
-  {
-    title: "Personal Development",
-    description:
-      "Committed to continuous learning and personal growth to excel in both professional and collaborative environments.",
-    tags: ["Time Management", "Problem Solving", "Communication", "Leadership"],
-  },
-  {
-    title: "Core Computer Science Concepts",
-    description:
-      "Demonstrating a strong foundation in core computer science principles, including problem-solving, system design, and efficient computing techniques.",
-    tags: [
-      "Operating Systems",
-      "Computer Networks",
-      "Object-Oriented Programming",
-      "DSA",
-      "System Design",
-    ],
-  },
-  {
-    title: "Styling & Design",
-    description:
-      "Crafting visually appealing and responsive designs with advanced styling tools and frameworks.",
-    icons: [Css3Icon, TailwindIcon, BootstrapIcon],
-  },
-  {
-    title: "Cloud & Deployment",
-    description:
-      "Experienced in deploying and managing applications using modern cloud platforms and tools.",
-    icons: [Cloud, VercelIcon],
-  },
-  {
-    title: "Programming Languages",
-    description:
-      "Proficient in problem-solving and applying programming languages to implement efficient data structures and algorithms.",
-    icons: [PythonIcon],
-  },
-  {
-    title: "Database Management",
-    description:
-      "Designing and managing databases to ensure secure and efficient data storage and retrieval.",
-    icons: [MysqlIcon],
-  },
-  {
-    title: "Version Control & Collaboration",
-    description:
-      "Effectively managing code and collaborating on projects to ensure seamless teamwork.",
-    icons: [GithubIcon, GitIcon],
-  },
-  {
-    title: "UI/UX Design",
-    description:
-      "Designing user-centric interfaces that are intuitive, visually appealing, and easy to navigate.",
-    icons: [FigmaIcon],
-    tag: "Prototyping",
-  },
+const techIcons = [
+  Html5Icon,
+  JavascriptIcon,
+  LaravelIcon,
+  Css3Icon,
+  TailwindIcon,
+  BootstrapIcon,
+  Cloud,
+  VercelIcon,
+  PythonIcon,
+  MysqlIcon,
+  GithubIcon,
+  GitIcon,
+  FigmaIcon,
 ];
 
 function IconBubble({
@@ -188,45 +134,6 @@ function IconBubble({
     >
       {children}
     </div>
-  );
-}
-
-function SkillCard({ group }: { group: (typeof skillGroups)[number] }) {
-  return (
-    <article className="flex min-h-[260px] flex-col gap-6 rounded-[28px] bg-charcoal-light p-7 sm:min-h-[280px] sm:p-8">
-      <div className="flex min-h-20 items-center justify-center gap-5 sm:justify-start">
-        {group.icons?.map((Icon, index) => (
-          <IconBubble key={index} large>
-            <Icon />
-          </IconBubble>
-        ))}
-        {group.tags && (
-          <div className="flex flex-wrap gap-2">
-            {group.tags.map((tag) => (
-          <span
-            key={tag}
-            className="rounded-full bg-charcoal px-3 py-1.5 text-xs font-light text-white sm:text-sm"
-          >
-            {tag}
-          </span>
-            ))}
-          </div>
-        )}
-        {group.tag && (
-          <span className="rounded-full bg-charcoal px-4 py-1.5 text-sm text-white">
-            {group.tag}
-          </span>
-        )}
-      </div>
-      <div className="mt-auto space-y-2">
-        <h3 className="font-display text-xl font-medium text-white sm:text-2xl">
-          {group.title}
-        </h3>
-        <p className="max-w-xl text-sm font-light leading-relaxed text-charcoal-muted sm:text-base">
-          {group.description}
-        </p>
-      </div>
-    </article>
   );
 }
 
@@ -503,9 +410,11 @@ export default function Index() {
   Skills that fuel my passion
 </h2>
           </div>
-          <div className="grid gap-4 md:grid-cols-2">
-            {skillGroups.map((group) => (
-              <SkillCard key={group.title} group={group} />
+          <div className="flex flex-wrap justify-center gap-6">
+            {techIcons.map((Icon, index) => (
+              <IconBubble key={index} large>
+                <Icon />
+              </IconBubble>
             ))}
           </div>
           <div className="mt-10 flex justify-end">
