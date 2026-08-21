@@ -401,7 +401,7 @@ export default function Index() {
         id="skills"
         className="bg-charcoal px-5 py-12 text-white sm:px-10 sm:py-16 lg:px-[6.9vw] lg:py-20"
       >
-        <div className="mx-auto max-w-[1400px]">
+        <div className="w-full">
           <div className="mb-12 text-center">
             <p className="mb-6 font-mono text-sm uppercase tracking-[0.25em] text-charcoal-muted">
               Capabilities
@@ -410,7 +410,7 @@ export default function Index() {
   Skills that fuel my passion
 </h2>
           </div>
-          <div className="flex flex-wrap justify-center gap-6">
+          <div className="grid grid-cols-3 gap-6 justify-items-center sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7">
             {techIcons.map((Icon, index) => (
               <IconBubble key={index} large>
                 <Icon />
